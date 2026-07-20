@@ -27,7 +27,7 @@ pip install .
 ```
 🚀 Быстрый старт
 ```python
-import crouchcord
+import crouchcordlight as crouchcord
 
 bot = crouchcord.Bot("!")
 
