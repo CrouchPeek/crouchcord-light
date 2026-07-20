@@ -133,15 +133,13 @@ from crouchcord import Group
 
 class ModerationGroup(Group):
     def __init__(self, bot):
-        bot.commands[имя_команды] = {
-            "func": ban,
-            "name": "ban",
-            "description": "Забанить",
-            "aliases": ["бан", "забанить"]
-        }
-    async def ban(self, ctx, member, reason="Без причины"):
-        await member.ban(reason=reason)
-        await ctx.send(f"🔨 {member.display_name} забанен!")
+        self.bot = bot
+    
+    def _register_commands(self):
+        @self.bot.command(name="ban")
+        async def ban(ctx, member, reason="Без причины"):
+            await member.ban(reason=reason)
+            await ctx.send(f"🔨 {member.display_name} забанен!")
 
 # main.py
 bot.add_group(ModerationGroup(bot))
