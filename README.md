@@ -27,7 +27,7 @@ pip install .
 ```
 🚀 Быстрый старт
 ```python
-import crouchcordlight as crouchcord
+import crouchcord
 
 bot = crouchcord.Bot("!")
 
@@ -129,10 +129,16 @@ embed = {
 await ctx.send(embeds=[embed])
 #🧩 Группы (модульность)
 # groups/moderation.py
-from crouchcord import Group, command
+from crouchcord import Group
 
 class ModerationGroup(Group):
-    @command(name="ban", description="Забанить")
+    def __init__(self, bot):
+        bot.commands[имя_команды] = {
+            "func": ban,
+            "name": "ban",
+            "description": "Забанить",
+            "aliases": ["бан", "забанить"]
+        }
     async def ban(self, ctx, member, reason="Без причины"):
         await member.ban(reason=reason)
         await ctx.send(f"🔨 {member.display_name} забанен!")
